@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:repeatCount="1"
+        android:duration="1000"
+        android:propertyXName="translate"
+        android:valueType="intType"
+        android:valueFrom="0dp"
+        android:valueTo="400dp"
+        android:interpolator="@android:anim/linear_interpolator"
+        />
+</set>
