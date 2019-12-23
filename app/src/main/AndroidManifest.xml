@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".translate.TransitionActivity1"></activity>
+        <activity android:name=".translate.TransitionActivity1" android:theme="@style/AppTheme"></activity>
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".translate.SampleTranslateActivity">
+        <activity android:name=".translate.SampleTranslateActivity" android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
