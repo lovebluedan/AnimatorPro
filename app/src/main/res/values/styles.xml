@@ -7,8 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowEnterTransition">@transition/explore_transtion</item>
-        <item name="android:windowExitTransition">@transition/fade_transtion</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+<!--        <item name="android:windowEnterTransition">@transition/explore_transtion</item>-->
+<!--        <item name="android:windowExitTransition">@transition/fade_transtion</item>-->
     </style>
 
 </resources>

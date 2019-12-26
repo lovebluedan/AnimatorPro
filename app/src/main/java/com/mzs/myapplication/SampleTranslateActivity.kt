@@ -1,7 +1,6 @@
-package com.mzs.myapplication.translate
+package com.mzs.myapplication
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,18 +9,16 @@ import android.util.Log
 import android.view.View
 
 import kotlinx.android.synthetic.main.activity_sample_translate.*
-import com.mzs.myapplication.R
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.transition.TransitionSet.ORDERING_TOGETHER
-import android.transition.Visibility.MODE_IN
 import android.view.Gravity
 import android.view.animation.AccelerateDecelerateInterpolator
 import com.mzs.myapplication.custom.ChangeColorTransition
 
 
-class SampleTranslateActivity : AppCompatActivity(), View.OnClickListener {
+class SampleTranslateActivity : BaseActivity(), View.OnClickListener {
 
     companion object {
         val TAG = SampleTranslateActivity::class.java.name
@@ -31,12 +28,17 @@ class SampleTranslateActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sample_translate)
+        title = "转场动画"
+        setWindowTransition()
         root_view.setOnClickListener(this)
         btn_change_bounds.setOnClickListener(this)
         btn_change_clip_bounds.setOnClickListener(this)
         btn_change_scroll.setOnClickListener(this)
-        button.setOnClickListener(this)
         button3.setOnClickListener(this)
+    }
+
+    private fun setWindowTransition() {
+
     }
 
     var i: Int = 0
@@ -46,34 +48,33 @@ class SampleTranslateActivity : AppCompatActivity(), View.OnClickListener {
             //点击底部布局 各种
             R.id.root_view -> {
                 i++
-                when (i % 2) {
+                when (i % 4) {
                     0 -> {
                         val transitionSet = TransitionSet()
                         transitionSet.addTransition(Fade())
                         transitionSet.addTransition(Slide())
                         transitionSet.ordering = ORDERING_TOGETHER
-                        transitionSet.duration = 2000
+                        transitionSet.duration = 500
                         TransitionManager.beginDelayedTransition(root_view, transitionSet)
                         Log.i(TAG, "Fade+Slide 淡出淡入效果跟幻灯片效果")
                     }
                     1 -> {
                         val translation = Slide().apply {
-                            duration = 2000
+                            duration = 500
                             interpolator = AccelerateDecelerateInterpolator()
                             slideEdge = Gravity.TOP
                         }
                         TransitionManager.beginDelayedTransition(root_view, translation)
-//                        TransitionManager.go(Scene.getSceneForLayout(root_view,))
                         Log.i(TAG, "Slide幻灯片Slide")
                     }
-//                    2 -> {
-//                        TransitionManager.beginDelayedTransition(root_view, Explode())
-//                        Log.i(TAG, "Explode爆炸 从屏幕中间向四周抛开")
-//                    }
-//                    3 -> {
-//                        TransitionManager.beginDelayedTransition(root_view, AutoTransition())
-//                        Log.i(TAG, "AutoTransition-- 其实里面实现的也是淡出淡入效果")
-//                    }
+                    2 -> {
+                        TransitionManager.beginDelayedTransition(root_view, Explode())
+                        Log.i(TAG, "Explode爆炸 从屏幕中间向四周抛开")
+                    }
+                    3 -> {
+                        TransitionManager.beginDelayedTransition(root_view, AutoTransition())
+                        Log.i(TAG, "AutoTransition-- 其实里面实现的也是淡出淡入效果")
+                    }
                 }
                 toggleVisibility(view_text, view_blue, view1_red, view_yellow)
             }
@@ -109,10 +110,6 @@ class SampleTranslateActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     view_text.scrollTo(-50, -50)
                 }
-            }
-            R.id.button -> {
-                val intent = Intent(this, TransitionActivity1::class.java)
-                startActivity(intent)
             }
             R.id.button3 -> {
                 var changeColorTransition = ChangeColorTransition()

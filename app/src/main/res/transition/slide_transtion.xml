@@ -2,7 +2,7 @@
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
     android:duration="500"
     android:transitionOrdering="sequential">
-    <explode android:interpolator="@android:interpolator/anticipate_overshoot"/>
+    <slide android:interpolator="@android:interpolator/anticipate_overshoot"/>
     <changeBounds  android:interpolator="@android:interpolator/accelerate_decelerate"/>
 
 <!--    <explode-->

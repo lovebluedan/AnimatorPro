@@ -67,6 +67,4 @@ class ChangeColorTransition : Transition() {
         }
         return null
     }
-
-
 }
